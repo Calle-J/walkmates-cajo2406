@@ -32,6 +32,8 @@ class SeekerSpecBasedTest {
     // TODO (BVA): a top-up that would push the balance above 20000.00 is rejected (FR-1.3).
     // TODO (Decision table): expected fee + max-bookings for each trust tier (FR-1.2).
 
+    // Test for collaboration in Github
+
     @Test
     @DisplayName("TODO: replace me — invalid email is rejected at registration")
     void invalidEmailIsRejected() {
