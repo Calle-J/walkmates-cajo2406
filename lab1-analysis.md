@@ -15,7 +15,14 @@ because the system should provide appropriate/necessary information to the user 
 the required format of the input.
 
 ### FR-2.2 Capacity rule
-Write something here....
+The first quality characteristic we chose was **``3.1.2 functional correctness``**. We chose this one
+because a seeker should not be able to take a job for a provider if the provider already has reached the
+capacity limit for active bookings.
+
+The second quality characteristic we chose was **``3.5.2 availability``**. We chose this one to make sure
+that the information about the provider's capacity is available to the user when needed, meaning that
+the provider can see their capacity and the seeker should be notified if the provider has reached the
+capacity limit.
 
 ### FR-4.3 Pricing
 Write something here....
