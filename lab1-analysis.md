@@ -24,6 +24,10 @@ the provider's current capacity status is available when needed, so seekers are 
 a provider has reached their booking limit and cannot accept any new bookings.
 
 ### FR-4.3 Pricing
-Write something here....
+The first quality characteristic we chose was **``3.6.2 integrity``**. We chose this one because unauthorized
+users should not be able to change/manipulate the price of a job/booking.
+
+The second quality characteristic we chose was **``3.1.2 functional correctness``**. We chose this one because the 
+price must be calculated accurately based on trust tiers and the job's duration.
 
 ## Activity 1.2 Bug analysis
