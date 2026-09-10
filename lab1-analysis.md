@@ -19,10 +19,9 @@ The first quality characteristic we chose was **``3.1.2 functional correctness``
 because a seeker should not be able to take a job for a provider if the provider already has reached the
 capacity limit for active bookings.
 
-The second quality characteristic we chose was **``3.5.2 availability``**. We chose this one to make sure
-that the information about the provider's capacity is available to the user when needed, meaning that
-the provider can see their capacity and the seeker should be notified if the provider has reached the
-capacity limit.
+The second quality characteristic we chose was **``3.5.2 availability``**. We chose this one to ensure that
+the provider's current capacity status is available when needed, so seekers are immediately notified when
+a provider has reached their booking limit and cannot accept any new bookings.
 
 ### FR-4.3 Pricing
 Write something here....
