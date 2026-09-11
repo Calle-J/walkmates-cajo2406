@@ -30,4 +30,13 @@ users should not be able to change/manipulate the price of a job/booking.
 The second quality characteristic we chose was **``3.1.2 functional correctness``**. We chose this one because the 
 price must be calculated accurately based on trust tiers and the job's duration.
 
+### Testable quality requirement
+A seeker with a trust tier of **``NEW``** applies for a **``DOG_WALK``** booking with a duration of 9 hours. The price 
+should be calculated as follows:
+- **``NEW``** tier: Platform fee of 15%
+- **``DOG_WALK``** base rate: 80 SEK/hour
+- **``overnight surcharge``**: 20%
+
+Expected price: 80 x 9 = 720 + 20% = 864 + 15% = 993,6 SEK
+
 ## Activity 1.2 Bug analysis
