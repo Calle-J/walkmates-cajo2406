@@ -37,6 +37,6 @@ should be calculated as follows:
 - **``DOG_WALK``** base rate: 80 SEK/hour
 - **``overnight surcharge``**: 20%
 
-Expected price: 80 x 9 = 720 + 20% = 864 + 15% = 993,6 SEK
+Expected price: 80 x 9 = 720 -> 720 + 20% = 864 -> 864 + 15% = 993,6 SEK
 
 ## Activity 1.2 Bug analysis
