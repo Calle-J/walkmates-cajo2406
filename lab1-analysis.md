@@ -51,3 +51,5 @@ if (seekerActive > seeker.getMaxConcurrentBookings()) { ... }
 
 The test level that should have caught this is the "Component (unit)" level during white box testing. 
 
+
+## Activity 2.1 Equivalence Partitioning
