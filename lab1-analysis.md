@@ -42,7 +42,7 @@ Expected price: 80 x 9 = 720 -> 720 + 20% = 864 -> 864 + 15% = 993,6 SEK
 The expected outcome is that the system should calculate a price of 993.6 SEK for the user.
 
 ## Activity 1.2 Bug analysis
-The human error is a logic mistake and the fault is usage of the wrong operator. 
+The human error is a logic mistake, and the fault is usage of the wrong operator. 
 The if-statement for rule number 2 uses ">" instead of ">=" as shown below.  
 
 ``` java
