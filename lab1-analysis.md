@@ -48,3 +48,6 @@ The if-statement for rule number 2 uses ">" instead of ">=" as shown below.
 ``` java
 if (seekerActive > seeker.getMaxConcurrentBookings()) { ... }
 ```
+
+The test level that should have caught this is the "Component (unit)" level during white box testing. 
+
