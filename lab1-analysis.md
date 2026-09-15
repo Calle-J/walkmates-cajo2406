@@ -83,6 +83,8 @@ The test level that should have caught this is the "Component (unit)" level duri
 | Phone number | Invalid, international, too long                          | +467312312345        | Rejected         |
 | Phone number | Invalid, international, too short                         | +4673123123          | Rejected         |
 
+## Activity 2.2 Boundary Value Analysis
+
 ### Wallet top-up amount
 | Input Field     | Partition                                              | Representative Value | Expected Outcome |
 |-----------------|--------------------------------------------------------|----------------------|------------------|
