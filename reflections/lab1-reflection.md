@@ -38,8 +38,8 @@ when it should have been like this:
 
 ### 3. AI use
 We used AI to generate the different tests connected to the tables in [`lab1-analysis.md`](../lab1-analysis.md).
-We created all the tables ourselves, and once the **``Equivalence Partitioning``**, **``Boundary Value Analysis``**,
-and **``Decision table``** tables were done, AI helped us to generate the tests.
+We created all the tables ourselves, and AI helped us to generate the tests for the 
+**``Equivalence Partitioning``** and the **``Boundary Value Analysis``** tables. 
 
 After the tests were generated, we reviewed them thoroughly to ensure that they were accurate and complete. The tests
 were accurate overall with just some minor adjustments, and nothing felt wrong or weak.
@@ -61,7 +61,7 @@ AI gave us this:
     }
 ```
 
-But the final result to match the intended result was:
+But the final test to match the intended result was:
 ```java
 @Test
     @DisplayName("Wallet top-up that would exceed 20000.00 SEK balance is rejected")
