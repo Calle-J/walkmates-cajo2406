@@ -10,7 +10,7 @@
 
 **Pair:** Carl Jonsson & Adam Persson
 
-**Repo commit/tag:** (add link to repo)
+**Repo commit/tag:** [GitHub Repo (latest commit: 3a88bf9)](https://github.com/Calle-J/walkmates-cajo2406)
 
 ---
 
@@ -35,6 +35,3 @@ equivalence classes matter, whether coverage was "enough", whether a mutant was 
 If you had another hour, what's the next test or risk you'd go after?
 
 ---
-
-*(Lab 4 only)* Replace sections 1–2 with a one-paragraph summary of your SUsAF map and the ethics
-trade-off you argued; keep sections 3–5.
