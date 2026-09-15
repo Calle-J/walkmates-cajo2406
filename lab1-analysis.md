@@ -106,3 +106,8 @@ The test level that should have caught this is the "Component (unit)" level duri
 | Just above upper boundary | 5 000.01   | Rejected        |
 
 ## Activity 2.3 Decision table (trust tier → limits)
+
+| Condition / Expected result  | NEW | VERIFIED | TRUSTED | PRO_SITTER |
+|------------------------------|-----|----------|---------|------------|
+| Max concurrent bookings      | 1   | 3        | 5       | 10         |
+| Platform fee                 | 15% | 12%      | 8%      | 5%         |
