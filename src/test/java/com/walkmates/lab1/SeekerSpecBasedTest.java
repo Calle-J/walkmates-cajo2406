@@ -255,4 +255,22 @@ class SeekerSpecBasedTest {
         assertThat(seeker.getMaxConcurrentBookings()).isEqualTo(3);
         assertThat(seeker.getTrustTier().getPlatformFee()).isEqualTo(0.12);
     }
+
+    @Test
+    @DisplayName("Verify max concurrent bookings and platform fee for a TRUSTED seeker")
+    void verifyMaxConcurrentBookingsAndPlatformFeeForTrustedSeeker() {
+        Seeker seeker = new Seeker("adam@example.com", "Adam", "0731231234");
+        seeker.setTrustTier(TrustTier.TRUSTED);
+        assertThat(seeker.getMaxConcurrentBookings()).isEqualTo(5);
+        assertThat(seeker.getTrustTier().getPlatformFee()).isEqualTo(0.08);
+    }
+
+    @Test
+    @DisplayName("Verify max concurrent bookings and platform fee for a PRO_SITTER seeker")
+    void verifyMaxConcurrentBookingsAndPlatformFeeForProSitterSeeker() {
+        Seeker seeker = new Seeker("adam@example.com", "Adam", "0731231234");
+        seeker.setTrustTier(TrustTier.PRO_SITTER);
+        assertThat(seeker.getMaxConcurrentBookings()).isEqualTo(10);
+        assertThat(seeker.getTrustTier().getPlatformFee()).isEqualTo(0.05);
+    }
 }
