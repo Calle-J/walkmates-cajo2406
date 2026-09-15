@@ -53,9 +53,22 @@ The test level that should have caught this is the "Component (unit)" level duri
 
 
 ## Activity 2.1 Equivalence Partitioning
-| Input Field | Partition | Representative Value | Expected Outcome |
-|-------------|-----------|----------------------|------------------|
-| Email | ... | ...| ... |
-| Email | ... | ...| ... |
-| Email | ... | ...| ... |
-| Email | ... | ...| ... |
+| Input Field  | Partition                                           | Representative Value   | Expected Outcome |
+|--------------|-----------------------------------------------------|------------------------|------------------|
+| Email        | Valid, proper format                                | example@example.com    | Accepted         |
+| Email        | Invalid, missing **``@``**                          | example.com            | Rejected         |
+| Email        | Invalid, multiple **``@``**                         | test@@example.com      | Rejected         |
+| Email        | Invalid, missing **``.``**                          | test@examplecom        | Rejected         |
+| Email        | Invalid, missing local part                         | @example.com           | Rejected         |
+| Email        | Invalid, too long local part                        | a........b@example.com | Rejected         |
+| Display name | Valid, proper length and valid characters           | Adam-Persson           | Accepted         |
+| Display name | Invalid, too short (<2 chars)                       | A                      | Rejected         |
+| Display name | Invalid, too long (>40 chars)                       | Aaaaaaaaaaaaaaaaa...   | Rejected         |
+| Display name | Invalid, contains digits                            | Adam123                | Rejected         |
+| Display name | Invalid, contains special characters                | Adam:)                 | Rejected         |
+| Phone number | Valid (Swedish format, 10 digits, starts with "07") | 0731231234             | Accepted         |
+| Phone number | Valid (International, 12 digits, starts with "+46") | +46731231234           | Accepted         |
+| Phone number | Invalid, swedish format, too long                   | 07312312312            | Rejected         |
+| Phone number | Invalid, swedish format, too short                  | 073123123              | Rejected         |
+| Phone number | Invalid, international, too long                    | +467312312345          | Rejected         |
+| Phone number | Invalid, international, too short                   | +4673123123            | Rejected         |
