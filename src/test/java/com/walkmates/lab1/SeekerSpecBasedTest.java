@@ -24,8 +24,6 @@ class SeekerSpecBasedTest {
         assertThat(seeker.getBalance()).isEqualTo(250.00);                   // Assert
     }
 
-    // ---- Activity 2.1: Equivalence Partitioning Tests ----
-
     // Email format/length tests
     @Test
     @DisplayName("Valid email with proper format is accepted")
