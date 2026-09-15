@@ -105,6 +105,7 @@ The test level that should have caught this is the "Component (unit)" level duri
 | Upper boundary            | 5 000.00   | Accepted        |
 | Just above upper boundary | 5 000.01   | Rejected        |
 
+
 ## Activity 2.3 Decision table (trust tier → limits)
 
 | Condition / Expected result  | NEW | VERIFIED | TRUSTED | PRO_SITTER |
