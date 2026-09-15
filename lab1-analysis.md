@@ -83,8 +83,6 @@ The test level that should have caught this is the "Component (unit)" level duri
 | Phone number | Invalid, international, too long                          | +467312312345        | Rejected         |
 | Phone number | Invalid, international, too short                         | +4673123123          | Rejected         |
 
-## Activity 2.2 Boundary Value Analysis
-
 ### Wallet top-up amount
 | Input Field     | Partition                                              | Representative Value | Expected Outcome |
 |-----------------|--------------------------------------------------------|----------------------|------------------|
@@ -94,5 +92,17 @@ The test level that should have caught this is the "Component (unit)" level duri
 | Wallet top-up   | Valid, maximum resulting balance <= 20 000.00 SEK      | 20 000.00            | Accepted         |
 | Wallet top-up   | Invalid, maximum resulting balance > 20 000.00 SEK     | 20 001.00            | Rejected         |
 | Wallet balance  | Invalid, balance turns negative                        | - 10.00              | Rejected         |
+
+
+## Activity 2.2 Boundary Value Analysis
+
+| Purpose                   | Value      | Expected Result |
+|---------------------------|------------|-----------------|
+| Just below lower boundary | 9.99       | Rejected        |
+| Lower boundary            | 10.00      | Accepted        |
+| Just above lower boundary | 10.01      | Accepted        |
+| Just below upper boundary | 4 999.99   | Accepted        |
+| Upper boundary            | 5 000.00   | Accepted        |
+| Just above upper boundary | 5 000.01   | Rejected        |
 
 ## Activity 2.3 Decision table (trust tier → limits)

@@ -161,7 +161,7 @@ class SeekerSpecBasedTest {
 
     @Test
     @DisplayName("Valid wallet top-up at 10.00 is accepted")
-    void validWalletTopUpAtMinimumIsAccepted() {
+    void walletTopUpAtMinimumIsAccepted() {
         Seeker seeker = new Seeker("adam@example.com", "Adam", "0731231234");
         seeker.addFunds(10.00);
         assertThat(seeker.getBalance()).isEqualTo(10.00);
@@ -169,7 +169,7 @@ class SeekerSpecBasedTest {
 
     @Test
     @DisplayName("Valid wallet top-up just above 10.00 is accepted")
-    void validWalletTopUpJustAboveMinimumIsAccepted() {
+    void walletTopUpJustAboveMinimumIsAccepted() {
         Seeker seeker = new Seeker("adam@example.com", "Adam", "0731231234");
         seeker.addFunds(10.01);
         assertThat(seeker.getBalance()).isEqualTo(10.01);
@@ -177,15 +177,23 @@ class SeekerSpecBasedTest {
 
     @Test
     @DisplayName("Valid wallet top-up between 10.00 and 5000.00 SEK is accepted")
-    void validWalletTopUpIsAccepted() {
+    void walletTopUpIsAccepted() {
         Seeker seeker = new Seeker("adam@example.com", "Adam", "0731231234");
         seeker.addFunds(1000.00);
         assertThat(seeker.getBalance()).isEqualTo(1000.00);
     }
 
     @Test
+    @DisplayName("Top-up just below maximum single transaction is accepted")
+    void walletTopUpJustBelowSingleMaximumIsAccepted() {
+        Seeker seeker = new Seeker("sam@example.com", "Sam", "0707654321");
+        seeker.addFunds(4999.99);
+        assertThat(seeker.getBalance()).isEqualTo(4999.99);
+    }
+
+    @Test
     @DisplayName("Top-up exactly at the 5000 SEK single-transaction maximum is accepted")
-    void topUpAtSingleMaximumIsAccepted() {
+    void walletTopUpAtSingleMaximumIsAccepted() {
         Seeker seeker = new Seeker("sam@example.com", "Sam", "0707654321");
         seeker.addFunds(Seeker.MAX_SINGLE_TOP_UP); // 5000.00, the boundary value
         assertThat(seeker.getBalance()).isEqualTo(Seeker.MAX_SINGLE_TOP_UP);
@@ -193,7 +201,7 @@ class SeekerSpecBasedTest {
 
     @Test
     @DisplayName("Wallet top-up above 5000.00 SEK is rejected")
-    void walletTopUpAboveMaximumIsRejected() {
+    void walletTopUpJustAboveMaximumIsRejected() {
         Seeker seeker = new Seeker("adam@example.com", "Adam", "0731231234");
         assertThrows(IllegalArgumentException.class,
                 () -> seeker.addFunds(5001.00));
