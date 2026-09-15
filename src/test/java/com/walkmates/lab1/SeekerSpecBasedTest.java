@@ -1,6 +1,7 @@
 package com.walkmates.lab1;
 
 import com.walkmates.model.Seeker;
+import com.walkmates.model.TrustTier;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -244,5 +245,14 @@ class SeekerSpecBasedTest {
         Seeker seeker = new Seeker("adam@example.com", "Adam", "0731231234");
         assertThat(seeker.getMaxConcurrentBookings()).isEqualTo(1);
         assertThat(seeker.getTrustTier().getPlatformFee()).isEqualTo(0.15);
+    }
+
+    @Test
+    @DisplayName("Verify max concurrent bookings and platform fee for a VERIFIED seeker")
+    void verifyMaxConcurrentBookingsAndPlatformFeeForVerifiedSeeker() {
+        Seeker seeker = new Seeker("adam@example.com", "Adam", "0731231234");
+        seeker.setTrustTier(TrustTier.VERIFIED);
+        assertThat(seeker.getMaxConcurrentBookings()).isEqualTo(3);
+        assertThat(seeker.getTrustTier().getPlatformFee()).isEqualTo(0.12);
     }
 }
