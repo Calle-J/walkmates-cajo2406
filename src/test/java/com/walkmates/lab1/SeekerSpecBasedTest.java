@@ -16,17 +16,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  */
 class SeekerSpecBasedTest {
 
-    // ---- Worked example: boundary value at the maximum single top-up (FR-1.3) ----
-    @Test
-    @DisplayName("Top-up exactly at the 5000 SEK single-transaction maximum is accepted")
-    void topUpAtSingleMaximumIsAccepted() {
-        Seeker seeker = new Seeker("sam@example.com", "Sam", "0707654321");
-
-        seeker.addFunds(Seeker.MAX_SINGLE_TOP_UP); // 5000.00, the boundary value
-
-        assertThat(seeker.getBalance()).isEqualTo(Seeker.MAX_SINGLE_TOP_UP);
-    }
-
     @Test
     @DisplayName("Adding 250 SEK to a new seeker gives a 250.00 balance")
     void addingFundsWorks() {
@@ -163,6 +152,30 @@ class SeekerSpecBasedTest {
 
     // Wallet top-up amount tests
     @Test
+    @DisplayName("Wallet top-up below 10.00 SEK is rejected")
+    void walletTopUpBelowMinimumIsRejected() {
+        Seeker seeker = new Seeker("adam@example.com", "Adam", "0731231234");
+        assertThrows(IllegalArgumentException.class,
+                () -> seeker.addFunds(9.99));
+    }
+
+    @Test
+    @DisplayName("Valid wallet top-up at 10.00 is accepted")
+    void validWalletTopUpAtMinimumIsAccepted() {
+        Seeker seeker = new Seeker("adam@example.com", "Adam", "0731231234");
+        seeker.addFunds(10.00);
+        assertThat(seeker.getBalance()).isEqualTo(10.00);
+    }
+
+    @Test
+    @DisplayName("Valid wallet top-up just above 10.00 is accepted")
+    void validWalletTopUpJustAboveMinimumIsAccepted() {
+        Seeker seeker = new Seeker("adam@example.com", "Adam", "0731231234");
+        seeker.addFunds(10.01);
+        assertThat(seeker.getBalance()).isEqualTo(10.01);
+    }
+
+    @Test
     @DisplayName("Valid wallet top-up between 10.00 and 5000.00 SEK is accepted")
     void validWalletTopUpIsAccepted() {
         Seeker seeker = new Seeker("adam@example.com", "Adam", "0731231234");
@@ -171,11 +184,11 @@ class SeekerSpecBasedTest {
     }
 
     @Test
-    @DisplayName("Wallet top-up below 10.00 SEK is rejected")
-    void walletTopUpBelowMinimumIsRejected() {
-        Seeker seeker = new Seeker("adam@example.com", "Adam", "0731231234");
-        assertThrows(IllegalArgumentException.class,
-                () -> seeker.addFunds(9.99));
+    @DisplayName("Top-up exactly at the 5000 SEK single-transaction maximum is accepted")
+    void topUpAtSingleMaximumIsAccepted() {
+        Seeker seeker = new Seeker("sam@example.com", "Sam", "0707654321");
+        seeker.addFunds(Seeker.MAX_SINGLE_TOP_UP); // 5000.00, the boundary value
+        assertThat(seeker.getBalance()).isEqualTo(Seeker.MAX_SINGLE_TOP_UP);
     }
 
     @Test
