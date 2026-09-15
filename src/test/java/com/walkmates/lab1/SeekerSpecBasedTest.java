@@ -239,8 +239,8 @@ class SeekerSpecBasedTest {
     }
 
     @Test
-    @DisplayName("Verify max concurrent booking and platform fee for a NEW seeker")
-    void verifyMaxConcurrentBookingAndPlatformFeeForNewSeeker() {
+    @DisplayName("Verify max concurrent bookings and platform fee for a NEW seeker")
+    void verifyMaxConcurrentBookingsAndPlatformFeeForNewSeeker() {
         Seeker seeker = new Seeker("adam@example.com", "Adam", "0731231234");
         assertThat(seeker.getMaxConcurrentBookings()).isEqualTo(1);
         assertThat(seeker.getTrustTier().getPlatformFee()).isEqualTo(0.15);
