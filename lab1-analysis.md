@@ -74,11 +74,21 @@ The test level that should have caught this is the "Component (unit)" level duri
 | Display name | Invalid, contains special characters                | Adam:)                 | Rejected         |
 
 ### Phone number format/length
-| Input Field  | Partition                                           | Representative Value   | Expected Outcome |
-|--------------|-----------------------------------------------------|------------------------|------------------|
-| Phone number | Valid (Swedish format, 10 digits, starts with "07") | 0731231234             | Accepted         |
-| Phone number | Valid (International, 12 digits, starts with "+46") | +46731231234           | Accepted         |
-| Phone number | Invalid, swedish format, too long                   | 07312312312            | Rejected         |
-| Phone number | Invalid, swedish format, too short                  | 073123123              | Rejected         |
-| Phone number | Invalid, international, too long                    | +467312312345          | Rejected         |
-| Phone number | Invalid, international, too short                   | +4673123123            | Rejected         |
+| Input Field  | Partition                                                 | Representative Value | Expected Outcome |
+|--------------|-----------------------------------------------------------|----------------------|------------------|
+| Phone number | Valid (Swedish format, 10 digits, starts with **``07``**) | 0731231234           | Accepted         |
+| Phone number | Valid (International, 12 digits, starts with **``+46``**) | +46731231234         | Accepted         |
+| Phone number | Invalid, swedish format, too long                         | 07312312312          | Rejected         |
+| Phone number | Invalid, swedish format, too short                        | 073123123            | Rejected         |
+| Phone number | Invalid, international, too long                          | +467312312345        | Rejected         |
+| Phone number | Invalid, international, too short                         | +4673123123          | Rejected         |
+
+### Wallet top-up amount
+| Input Field     | Partition                                              | Representative Value | Expected Outcome |
+|-----------------|--------------------------------------------------------|----------------------|------------------|
+| Wallet top-up   | Valid, top-up between 10.00 and 5 000.00 SEK inclusive | 1000.00              | Accepted         |
+| Wallet top-up   | Invalid, top-up below 10.00 SEK                        | 9.99                 | Rejected         |
+| Wallet top-up   | Invalid, top-up above 5 000.00 SEK                     | 5 001.00             | Rejected         |
+| Wallet top-up   | Valid, maximum resulting balance <= 20 000.00 SEK      | 20 000.00            | Accepted         |
+| Wallet top-up   | Invalid, maximum resulting balance > 20 000.00 SEK     | 20 001.00            | Rejected         |
+| Wallet balance  | Invalid, balance turns negative                        | - 10.00              | Rejected         |
