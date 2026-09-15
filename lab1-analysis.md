@@ -53,3 +53,9 @@ The test level that should have caught this is the "Component (unit)" level duri
 
 
 ## Activity 2.1 Equivalence Partitioning
+| Input Field | Partition | Representative Value | Expected Outcome |
+|-------------|-----------|----------------------|------------------|
+| Email | ... | ...| ... |
+| Email | ... | ...| ... |
+| Email | ... | ...| ... |
+| Email | ... | ...| ... |
