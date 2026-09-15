@@ -202,7 +202,7 @@ class SeekerSpecBasedTest {
     void walletTopUpJustAboveMaximumIsRejected() {
         Seeker seeker = new Seeker("adam@example.com", "Adam", "0731231234");
         assertThrows(IllegalArgumentException.class,
-                () -> seeker.addFunds(5001.00));
+                () -> seeker.addFunds(5000.01));
     }
 
     @Test
