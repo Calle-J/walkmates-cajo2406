@@ -53,6 +53,8 @@ The test level that should have caught this is the "Component (unit)" level duri
 
 
 ## Activity 2.1 Equivalence Partitioning
+
+### Email format/length
 | Input Field  | Partition                                           | Representative Value   | Expected Outcome |
 |--------------|-----------------------------------------------------|------------------------|------------------|
 | Email        | Valid, proper format                                | example@example.com    | Accepted         |
@@ -61,11 +63,19 @@ The test level that should have caught this is the "Component (unit)" level duri
 | Email        | Invalid, missing **``.``**                          | test@examplecom        | Rejected         |
 | Email        | Invalid, missing local part                         | @example.com           | Rejected         |
 | Email        | Invalid, too long local part                        | a........b@example.com | Rejected         |
+
+### Display name format/length
+| Input Field  | Partition                                           | Representative Value   | Expected Outcome |
+|--------------|-----------------------------------------------------|------------------------|------------------|
 | Display name | Valid, proper length and valid characters           | Adam-Persson           | Accepted         |
 | Display name | Invalid, too short (<2 chars)                       | A                      | Rejected         |
 | Display name | Invalid, too long (>40 chars)                       | Aaaaaaaaaaaaaaaaa...   | Rejected         |
 | Display name | Invalid, contains digits                            | Adam123                | Rejected         |
 | Display name | Invalid, contains special characters                | Adam:)                 | Rejected         |
+
+### Phone number format/length
+| Input Field  | Partition                                           | Representative Value   | Expected Outcome |
+|--------------|-----------------------------------------------------|------------------------|------------------|
 | Phone number | Valid (Swedish format, 10 digits, starts with "07") | 0731231234             | Accepted         |
 | Phone number | Valid (International, 12 digits, starts with "+46") | +46731231234           | Accepted         |
 | Phone number | Invalid, swedish format, too long                   | 07312312312            | Rejected         |
