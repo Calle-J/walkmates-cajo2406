@@ -18,9 +18,23 @@
 A few sentences: which tests/artifacts you produced and why those, against which requirements
 (cite rule IDs, e.g. FR-1.3, FR-4.4).
 
+We produced tests for the following rule IDs: **``FR-1.1``**  **``FR-1.2``** **``FR-1.3``**  
+These tests were created to make sure that e-mail, display name, and phone number
+are entered correctly by the user, using proper length, characters etc.  
+
 ### 2. What we found
 The most interesting thing you learned or uncovered — a boundary bug, a surviving mutant, a
 covered-but-buggy path, a fallback that didn't behave, a metamorphic relation that broke.
+
+We found an error in Seeker.java where the format for the international phone number was to short.  
+The format looked like this. 
+```java
+ private static final Pattern PHONE = Pattern.compile("^(07\\d{8}|\\+467\\d{7})$");
+```
+when it should have been like this:
+```java
+ private static final Pattern PHONE = Pattern.compile("^(07\\d{8}|\\+467\\d{8})$");
+```
 
 ### 3. AI use (be honest — it doesn't lower your grade)
 - What did you use AI for in this lab?
