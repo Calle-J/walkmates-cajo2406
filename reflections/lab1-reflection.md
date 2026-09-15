@@ -36,10 +36,45 @@ when it should have been like this:
  private static final Pattern PHONE = Pattern.compile("^(07\\d{8}|\\+467\\d{8})$");
 ```
 
-### 3. AI use (be honest — it doesn't lower your grade)
-- What did you use AI for in this lab?
-- **What did the AI suggest vs. what you kept or changed — and why?** (the key question)
-- Anything the AI produced that you suspected was wrong or weak? How did you check?
+### 3. AI use
+We used AI to generate the different tests connected to the tables in [`lab1-analysis.md`](../lab1-analysis.md).
+We created all the tables ourselves, and once the **``Equivalence Partitioning``**, **``Boundary Value Analysis``**,
+and **``Decision table``** tables were done, AI helped us to generate the tests.
+
+After the tests were generated, we reviewed them thoroughly to ensure that they were accurate and complete. The tests
+were accurate overall with just some minor adjustments, and nothing felt wrong or weak.
+
+One of the tests required some adjustments to fit in with our initial plan regarding the **``wallet top-up amount``**.
+
+AI gave us this:
+```java
+@Test
+    @DisplayName("Wallet top-up that would exceed 20000.00 SEK balance is rejected")
+    void walletTopUpExceedingMaxBalanceIsRejected() {
+        Seeker seeker = new Seeker("adam@example.com", "Adam", "0731231234");
+        seeker.addFunds(5000.00);
+        seeker.addFunds(5000.00);
+        seeker.addFunds(5000.00);
+        seeker.addFunds(5000.00); // Balance: 20 000.00
+        assertThrows(IllegalArgumentException.class,
+                () -> seeker.addFunds(10.00)); // Would make 20 010.00
+    }
+```
+
+But the final result to match the intended result was:
+```java
+@Test
+    @DisplayName("Wallet top-up that would exceed 20000.00 SEK balance is rejected")
+    void walletTopUpExceedingMaxBalanceIsRejected() {
+        Seeker seeker = new Seeker("adam@example.com", "Adam", "0731231234");
+        seeker.addFunds(5000.00);
+        seeker.addFunds(5000.00);
+        seeker.addFunds(5000.00);
+        seeker.addFunds(4991.00); // Balance: 19 991.00
+        assertThrows(IllegalArgumentException.class,
+                () -> seeker.addFunds(10.00)); // Would make 20 001.00
+    }
+```
 
 ### 4. Judgment
 Where did *you* have to decide something the tools/AI couldn't decide for you? (e.g. which
