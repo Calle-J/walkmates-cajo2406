@@ -9,99 +9,77 @@
 ---
 
 ### 1. What we did
-The laboration was divided into two parts, we started part A by selecting three features and performed
-quality-attribute analysis on them. The next thing we did was to connect these features to two ISO/IEC 25010
-quality characteristics each, most at stake, which resulted in:
+The laboration was divided into two parts, and both were documented in [lab1-analysis.md](../lab1-analysis.md). We 
+started part A by selecting three features and performed quality-attribute analysis on them. The next thing we did 
+was to connect these features to two ISO/IEC 25010 quality characteristics each, most at stake, which resulted in:
 
 ```mermaid
 flowchart TD
     A["`**FR-1.1 Registration**`"] --> B[3.4.4 user error protection]
     A --> C[3.4.8 self-descriptiveness]
 ```
+
 ```mermaid
 flowchart TD
     A["`**FR-2.2 Capacity rule**`"] --> B[3.1.2 functional correctness]
     A --> C[3.5.2 availability]
 ```
+
 ```mermaid
 flowchart TD
     A["`**FR-4.3 Pricing**`"] --> B[3.6.2 integrity]
     A --> C[3.1.2 functional correctness]
 ```
 
-Once the quality-attribute analysis was done, the next thing we did was a bug analysis. The goal was to trace the chain
+Once the quality-attribute analysis was done, we did a bug analysis. The goal was to trace the chain
 and identify the human error, the fault in the code, and lastly, the failure the user saw. Our bug analysis revealed
-that a human error was the cause of the bug we found, which typically should be caught at the unit level.
+that a human error was causing the bug we found, which typically should be caught at the unit level.
 
-Part B of the laboration consisted of three different moments. We started with a **``Equivalence Partitioning``**
+Part B of the laboration consisted of three different activities. We started with a **``Equivalence Partitioning``**
 with focus on valid/invalid classes for email, display name, phone number, and wallet top-up amount. The next thing 
 we did was the **``Boundary Value Analysis``** with focus on wallet boundaries to identify potential issues 
 related to wallet top-up limits. Lastly, we did the **``Decision table``** to verify that each trust tier was 
-mapped to the correct limits (max concurrent bookings and platform fees). We created tables for all three moments
-and then tests for each row.
+mapped to the correct limits (max concurrent bookings and platform fees). We created tables for all three activities
+and then tests related to each table.
 
 ### 2. What we found
-We found a logic mistake during our bug analysis where the fault was the usage of the wrong operator. This resulted
-in a failure where a seeker was able to take on more bookings than allowed.
-
-The code with the bug looked like this:
+The bug analysis revealed that the booking-limit check used the wrong comparison operator:
 ``` java
 if (seekerActive > seeker.getMaxConcurrentBookings()) { ... }
 ```
-when it should have been like this:
+
+it should have been like this:
 ``` java
 if (seekerActive >= seeker.getMaxConcurrentBookings()) { ... }
 ```
 
-We also found an error in **``Seeker.java``** where the format for the international phone number was too short.  
-The format looked like this. 
+The human error was choosing the wrong comparison operator. The fault was the incorrect condition in the code,
+and the failure was that a seeker could take on more bookings than allowed.
+
+Our specification-based tests also exposed a fault in the international phone-number validation. The regular expression
+accepted an international number that was one digit too short.
+  
+The pattern looked like this:
 ```java
  private static final Pattern PHONE = Pattern.compile("^(07\\d{8}|\\+467\\d{7})$");
 ```
+
 when it should have been like this:
 ```java
  private static final Pattern PHONE = Pattern.compile("^(07\\d{8}|\\+467\\d{8})$");
 ```
 
 ### 3. AI use
-We used AI to generate the different tests connected to the tables in [`lab1-analysis.md`](../lab1-analysis.md).
-We created all the tables ourselves, and AI helped us to generate the tests for the 
-**``Equivalence Partitioning``** and the **``Boundary Value Analysis``** tables. 
+We created the analysis tables ourselves and used AI mainly to generate test methods for the 
+**``Equivalence Partitioning``** and **``Boundary Value Analysis``** tables.
 
-After the tests were generated, we reviewed them thoroughly to ensure that they were accurate and complete. The tests
-were accurate overall with just some minor adjustments, and nothing felt wrong or weak.
+We reviewed the generated tests against the requirements, our tables, and the **``Seeker``** implementation. Most of
+the suggestions were useful, but we changed the maximum-wallet-balance test. The original version first created a
+balance of 20 000 SEK and then attempted to add 10 SEK. We changed it to create a balance of 19 991 SEK and then add
+10 SEK, resulting in a balance of 20 001 SEK. This tests the "just above the maximum balance" case more directly.
 
-One of the tests required some adjustments to fit in with our initial plan regarding the **``wallet top-up amount``**.
-
-AI gave us this:
-```java
-@Test
-    @DisplayName("Wallet top-up that would exceed 20000.00 SEK balance is rejected")
-    void walletTopUpExceedingMaxBalanceIsRejected() {
-        Seeker seeker = new Seeker("adam@example.com", "Adam", "0731231234");
-        seeker.addFunds(5000.00);
-        seeker.addFunds(5000.00);
-        seeker.addFunds(5000.00);
-        seeker.addFunds(5000.00); // Balance: 20 000.00
-        assertThrows(IllegalArgumentException.class,
-                () -> seeker.addFunds(10.00)); // Would make 20 010.00
-    }
-```
-
-But the final test to match the intended result was:
-```java
-@Test
-    @DisplayName("Wallet top-up that would exceed 20000.00 SEK balance is rejected")
-    void walletTopUpExceedingMaxBalanceIsRejected() {
-        Seeker seeker = new Seeker("adam@example.com", "Adam", "0731231234");
-        seeker.addFunds(5000.00);
-        seeker.addFunds(5000.00);
-        seeker.addFunds(5000.00);
-        seeker.addFunds(4991.00); // Balance: 19 991.00
-        assertThrows(IllegalArgumentException.class,
-                () -> seeker.addFunds(10.00)); // Would make 20 001.00
-    }
-```
+AI helped with the test-code generation, but we were responsible for deciding which partitions and boundary values
+were relevant and whether the tests matched the intended specification.
 
 ### 4. Judgment
 Where did *you* have to decide something the tools/AI couldn't decide for you? (e.g. which
