@@ -1,11 +1,5 @@
 # Lab Reflection — WalkMates
 
-> One per lab. Keep it **short and specific** — this is graded for *understanding*, not length.
-> Half a page to a page is plenty. Bullet points are fine.
->
-> **Before writing:** copy this file to `reflections/labN-reflection.md`, replacing `N` with the
-> lab number. Keep this template unchanged so it remains available for the next lab.
-
 **Lab:** 1
 
 **Pair:** Carl Jonsson & Adam Persson
@@ -40,10 +34,11 @@ and identify the human error, the fault in the code, and lastly, the failure the
 that a human error was the cause of the bug we found, which typically should be caught at the unit level.
 
 Part B of the laboration consisted of three different moments. We started with a **``Equivalence Partitioning``**
-with focus on valid/invalid classes for email, display name, phone number, and wallet top-up amount. This was done in
-a table format. The next thing we did was the **``Boundary Value Analysis``** with focus on wallet boundaries to 
-identify potential issues related to wallet top-up limits. Lastly, we did the **``Decision table``** to verify that each 
-trust tier was mapped to the correct limits (max concurrent bookings and platform fees).
+with focus on valid/invalid classes for email, display name, phone number, and wallet top-up amount. The next thing 
+we did was the **``Boundary Value Analysis``** with focus on wallet boundaries to identify potential issues 
+related to wallet top-up limits. Lastly, we did the **``Decision table``** to verify that each trust tier was 
+mapped to the correct limits (max concurrent bookings and platform fees). We created tables for all three moments
+and then tests for each row.
 
 ### 2. What we found
 We found a logic mistake during our bug analysis where the fault was the usage of the wrong operator. This resulted
