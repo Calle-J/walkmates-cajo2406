@@ -44,10 +44,19 @@ These tests were created to make sure that e-mail, display name, and phone numbe
 are entered correctly by the user, using proper length, characters, etc.  
 
 ### 2. What we found
-The most interesting thing you learned or uncovered — a boundary bug, a surviving mutant, a
-covered-but-buggy path, a fallback that didn't behave, a metamorphic relation that broke.
+We found a logic mistake during our bug analysis where the fault was the usage of the wrong operator. This resulted
+in a failure where a seeker was able to take on more bookings than allowed.
 
-We found an error in Seeker.java where the format for the international phone number was too short.  
+The code with the bug looked like this:
+``` java
+if (seekerActive > seeker.getMaxConcurrentBookings()) { ... }
+```
+when it should have been like this:
+``` java
+if (seekerActive >= seeker.getMaxConcurrentBookings()) { ... }
+```
+
+We also found an error in **``Seeker.java``** where the format for the international phone number was too short.  
 The format looked like this. 
 ```java
  private static final Pattern PHONE = Pattern.compile("^(07\\d{8}|\\+467\\d{7})$");
