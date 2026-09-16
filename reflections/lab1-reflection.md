@@ -10,23 +10,44 @@
 
 **Pair:** Carl Jonsson & Adam Persson
 
-**Repo commit/tag:** [GitHub Repo (latest commit: 3a88bf9)](https://github.com/Calle-J/walkmates-cajo2406)
+**Repo commit/tag:** [GitHub Repo](https://github.com/Calle-J/walkmates-cajo2406)
 
 ---
 
 ### 1. What we did
-A few sentences: which tests/artifacts you produced and why those, against which requirements
-(cite rule IDs, e.g. FR-1.3, FR-4.4).
+The laboration was divided into two parts, we started part A by selecting three features and performed
+quality-attribute analysis on them. The next thing we did was to connect these features to two ISO/IEC 25010
+quality characteristics each, most at stake, which resulted in:
+
+```mermaid
+flowchart TD
+    A["`**FR-1.1 Registration**`"] --> B[3.4.4 user error protection]
+    A --> C[3.4.8 self-descriptiveness]
+```
+```mermaid
+flowchart TD
+    A["`**FR-2.2 Capacity rule**`"] --> B[3.1.2 functional correctness]
+    A --> C[3.5.2 availability]
+```
+```mermaid
+flowchart TD
+    A["`**FR-4.3 Pricing**`"] --> B[3.6.2 integrity]
+    A --> C[3.1.2 functional correctness]
+```
+
+Once the quality-attribute analysis was done, the next thing we did was a bug analysis. The goal was to trace the chain
+and identify the human error, the fault in the code and lastly, the failure the user saw. Our bug analysis revealed
+that a human error was the cause of the bug we found, which typically should be caught at the unit level.
 
 We produced tests for the following rule IDs: **``FR-1.1``**  **``FR-1.2``** **``FR-1.3``**  
 These tests were created to make sure that e-mail, display name, and phone number
-are entered correctly by the user, using proper length, characters etc.  
+are entered correctly by the user, using proper length, characters, etc.  
 
 ### 2. What we found
 The most interesting thing you learned or uncovered — a boundary bug, a surviving mutant, a
 covered-but-buggy path, a fallback that didn't behave, a metamorphic relation that broke.
 
-We found an error in Seeker.java where the format for the international phone number was to short.  
+We found an error in Seeker.java where the format for the international phone number was too short.  
 The format looked like this. 
 ```java
  private static final Pattern PHONE = Pattern.compile("^(07\\d{8}|\\+467\\d{7})$");
