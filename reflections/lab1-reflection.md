@@ -36,12 +36,14 @@ flowchart TD
 ```
 
 Once the quality-attribute analysis was done, the next thing we did was a bug analysis. The goal was to trace the chain
-and identify the human error, the fault in the code and lastly, the failure the user saw. Our bug analysis revealed
+and identify the human error, the fault in the code, and lastly, the failure the user saw. Our bug analysis revealed
 that a human error was the cause of the bug we found, which typically should be caught at the unit level.
 
-We produced tests for the following rule IDs: **``FR-1.1``**  **``FR-1.2``** **``FR-1.3``**  
-These tests were created to make sure that e-mail, display name, and phone number
-are entered correctly by the user, using proper length, characters, etc.  
+Part B of the laboration consisted of three different moments. We started with a **``Equivalence Partitioning``**
+with focus on valid/invalid classes for email, display name, phone number, and wallet top-up amount. This was done in
+a table format. The next thing we did was the **``Boundary Value Analysis``** with focus on wallet boundaries to 
+identify potential issues related to wallet limits. Lastly, we did the **``Decision table``** to verify that each 
+trust tier was mapped to the correct limits (max concurrent bookings and platform fees).
 
 ### 2. What we found
 We found a logic mistake during our bug analysis where the fault was the usage of the wrong operator. This resulted
