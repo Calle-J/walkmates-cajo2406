@@ -90,7 +90,9 @@ Throughout the laboration, we used generative AI as a tool for *effectiveness*, 
 to maintain control over our testing and ensure quality. 
 
 ### 5. What we'd test next
+
 Next, we would continue to test core functionality, prioritizing the booking functionality. 
 We would specifically focus on the combined booking-creation rule in **``FR-4.4``**, because of its complexity
 in combining listing availability, capacity limits, duration, and wallet balance. 
+
 ---
