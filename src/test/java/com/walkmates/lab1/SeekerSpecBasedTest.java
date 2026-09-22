@@ -35,6 +35,20 @@ class SeekerSpecBasedTest {
     }
 
     @Test
+    @DisplayName("Email blank rejected")
+    void emailBlankIsRejected() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Seeker("", "Adam", "0731231234"));
+    }
+
+    @Test
+    @DisplayName("Email is null rejected")
+    void emailIsNullIsRejected() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Seeker(null, "Adam", "0731231234"));
+    }
+
+    @Test
     @DisplayName("Email missing @ is rejected")
     void emailMissingAtIsRejected() {
         assertThrows(IllegalArgumentException.class,
