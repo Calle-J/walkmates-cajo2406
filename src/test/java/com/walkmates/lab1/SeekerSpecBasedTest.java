@@ -137,6 +137,13 @@ class SeekerSpecBasedTest {
     }
 
     @Test
+    @DisplayName("Phone number is null rejected")
+    void phoneNumberIsNullIsRejected() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Seeker("test@example.com", "Adam", null));
+    }
+
+    @Test
     @DisplayName("Valid international phone number format is accepted")
     void validInternationalPhoneIsAccepted() {
         Seeker seeker = new Seeker("adam@example.com", "Adam", "+46731231234");
@@ -294,6 +301,14 @@ class SeekerSpecBasedTest {
         seeker.setTrustTier(TrustTier.PRO_SITTER);
         assertThat(seeker.getMaxConcurrentBookings()).isEqualTo(10);
         assertThat(seeker.getTrustTier().getPlatformFee()).isEqualTo(0.05);
+    }
+
+    @Test
+    @DisplayName("Trust tier is null rejected")
+    void trustTierIsNullIsRejected() {
+        Seeker seeker = new Seeker("adam@example.com", "Adam", "0731231234");
+        assertThrows(IllegalArgumentException.class,
+                () -> seeker.setTrustTier(null));
     }
 
     @Test
