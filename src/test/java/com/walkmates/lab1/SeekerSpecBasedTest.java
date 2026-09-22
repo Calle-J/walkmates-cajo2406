@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
@@ -272,5 +273,12 @@ class SeekerSpecBasedTest {
         seeker.setTrustTier(TrustTier.PRO_SITTER);
         assertThat(seeker.getMaxConcurrentBookings()).isEqualTo(10);
         assertThat(seeker.getTrustTier().getPlatformFee()).isEqualTo(0.05);
+    }
+
+    @Test
+    @DisplayName("Verify that a Seeker gets an ID")
+    void verifySeekerIdGenerated() {
+        Seeker seeker = new Seeker("adam@example.com", "Adam", "0731231234");
+        assertFalse(seeker.getId().isEmpty());
     }
 }
