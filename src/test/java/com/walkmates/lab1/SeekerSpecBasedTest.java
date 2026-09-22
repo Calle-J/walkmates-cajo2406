@@ -93,6 +93,13 @@ class SeekerSpecBasedTest {
     }
 
     @Test
+    @DisplayName("Display name is null rejected")
+    void displayNameIsNullIsRejected() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Seeker("test@example.com", null, "0731231234"));
+    }
+
+    @Test
     @DisplayName("Display name too short (< 2 chars) is rejected")
     void displayNameTooShortIsRejected() {
         assertThrows(IllegalArgumentException.class,
