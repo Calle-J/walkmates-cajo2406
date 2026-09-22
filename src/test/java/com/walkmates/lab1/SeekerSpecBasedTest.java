@@ -317,4 +317,28 @@ class SeekerSpecBasedTest {
         Seeker seeker = new Seeker("adam@example.com", "Adam", "0731231234");
         assertFalse(seeker.getId().isEmpty());
     }
+
+    @Test
+    @DisplayName("Verify that charge amount can't be negative")
+    void verifyChargeAmountCannotBeNegative() {
+        Seeker seeker = new Seeker("adam@example.com", "Adam", "0731231234");
+        assertThrows(IllegalArgumentException.class, () -> seeker.charge(-10.0));
+    }
+
+    @Test
+    @DisplayName("Verify that charge amount can't be larger than balance")
+    void verifyChargeAmountCannotBeLargerThanBalance() {
+        Seeker seeker = new Seeker("adam@example.com", "Adam", "0731231234");
+        seeker.addFunds(100.0);
+        assertThrows(IllegalArgumentException.class, () -> seeker.charge(150.0));
+    }
+
+    @Test
+    @DisplayName("Verify final balance after charging")
+    void verifyFinalBalanceAfterCharging() {
+        Seeker seeker = new Seeker("adam@example.com", "Adam", "0731231234");
+        seeker.addFunds(100.0);
+        seeker.charge(50.0);
+        assertThat(seeker.getBalance()).isEqualTo(50.0);
+    }
 }
