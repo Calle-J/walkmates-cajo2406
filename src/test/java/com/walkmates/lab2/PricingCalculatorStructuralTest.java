@@ -30,7 +30,8 @@ class PricingCalculatorStructuralTest {
     }
 
     private Listing listing(ListingType type) {
-        return new Listing("provider-1", "A listing", "desc", type);
+        return new Listing("provider-1", "A listing",
+                "desc", type);
     }
 
     // ---- Worked example: a short standard walk, no overnight surcharge ----
