@@ -61,7 +61,29 @@ class PricingCalculatorStructuralTest {
         assertThat(price).isEqualTo(0.00);
     }
 
-    // TODO (branch): a clearly-overnight booking (e.g. 600 min) includes the 20% surcharge.
+    @Test
+    @DisplayName("Clearly overnight booking (600 min)")
+    void clearlyOverNightBooking() {
+        Booking booking = new Booking("seeker-1", "listing-1", 600);
+
+        double price = pricing.priceFor(booking, listing(ListingType.DOG_WALK), seeker(TrustTier.VERIFIED));
+
+        double expected = 80 * 10 * 1.12 * 1.2; // Base * duration * 12% fee * 20% surcharge
+
+        assertThat(price).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("Booking of exactly 480 minutes must NOT be surcharged")
+    void surchargeBoundaryVerification() {
+        Booking booking = new Booking("seeker-1", "listing-1", 480);
+
+        double price = pricing.priceFor(booking, listing(ListingType.DOG_WALK), seeker(TrustTier.VERIFIED));
+
+        double expected = 80 * 8 * 1.12; // Base * duration * 12% fee
+
+        assertThat(price).isEqualTo(expected);
+    }
     // TODO (BOUNDARY — this is the interesting one): a booking of exactly 480 minutes must NOT
     //      be surcharged (FR-4.3 says strictly > 480). Write this test and see what happens.
 }
