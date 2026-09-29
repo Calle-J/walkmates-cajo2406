@@ -16,6 +16,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Lab 2, Part A — structural testing for {@link PricingCalculator} (FR-4.3).
@@ -88,5 +89,30 @@ class PricingCalculatorStructuralTest {
         double expectedRound = BigDecimal.valueOf(expected).setScale(2, RoundingMode.HALF_UP).doubleValue();
 
         assertThat(price).isEqualTo(expectedRound);
+    }
+
+    @Test
+    @DisplayName("Booking is null is rejected")
+    void bookingIsNullRejected() {
+        assertThrows(IllegalArgumentException.class,
+                () -> pricing.priceFor(null, listing(ListingType.DOG_WALK), seeker(TrustTier.VERIFIED)));
+    }
+
+    @Test
+    @DisplayName("Listing is null is rejected")
+    void listingIsNullRejected() {
+        Booking booking = new Booking("seeker-1", "listing-1", 60);
+
+        assertThrows(IllegalArgumentException.class,
+                () -> pricing.priceFor(booking, null, seeker(TrustTier.VERIFIED)));
+    }
+
+    @Test
+    @DisplayName("Seeker is null is rejected")
+    void seekerIsNullRejected() {
+        Booking booking = new Booking("seeker-1", "listing-1", 60);
+
+        assertThrows(IllegalArgumentException.class,
+                () -> pricing.priceFor(booking, listing(ListingType.DOG_WALK), null));
     }
 }
