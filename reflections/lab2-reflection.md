@@ -1,7 +1,9 @@
 # Lab Reflection — WalkMates
 
 **Lab:** 2
+
 **Pair:** Adam and Carl
+
 **Repo:** [GitHub Repo](https://github.com/Calle-J/walkmates-cajo2406)
 
 ---
