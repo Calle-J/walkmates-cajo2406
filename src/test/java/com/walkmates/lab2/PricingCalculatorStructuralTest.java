@@ -9,6 +9,9 @@ import com.walkmates.service.PricingCalculator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -45,7 +48,19 @@ class PricingCalculatorStructuralTest {
         assertThat(price).isEqualTo(89.60);
     }
 
-    // TODO (branch): a free SHELTER_VOLUNTEER listing always costs 0.00.
+    @ParameterizedTest
+    @DisplayName("free SHELTER_VOLUNTEER listing always cost 0.00")
+    @ValueSource(ints = {30, 80, 120, 480, 481})
+    void freeShelterVolunteerListing(int duration) {
+        Booking booking = new Booking("seeker-1", "listing-1", duration);
+        Listing listing = listing(ListingType.SHELTER_VOLUNTEER);
+        Seeker seeker = seeker(TrustTier.NEW);
+
+        double price = pricing.priceFor(booking, listing, seeker);
+
+        assertThat(price).isEqualTo(0.00);
+    }
+
     // TODO (branch): a clearly-overnight booking (e.g. 600 min) includes the 20% surcharge.
     // TODO (BOUNDARY — this is the interesting one): a booking of exactly 480 minutes must NOT
     //      be surcharged (FR-4.3 says strictly > 480). Write this test and see what happens.
