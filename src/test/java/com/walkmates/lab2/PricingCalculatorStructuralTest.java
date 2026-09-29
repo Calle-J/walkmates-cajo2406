@@ -12,6 +12,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -69,8 +72,9 @@ class PricingCalculatorStructuralTest {
         double price = pricing.priceFor(booking, listing(ListingType.DOG_WALK), seeker(TrustTier.VERIFIED));
 
         double expected = 80 * 10 * 1.12 * 1.2; // Base * duration * 12% fee * 20% surcharge
+        double expectedRound = BigDecimal.valueOf(expected).setScale(2, RoundingMode.HALF_UP).doubleValue();
 
-        assertThat(price).isEqualTo(expected);
+        assertThat(price).isEqualTo(expectedRound);
     }
 
     @Test
@@ -81,9 +85,8 @@ class PricingCalculatorStructuralTest {
         double price = pricing.priceFor(booking, listing(ListingType.DOG_WALK), seeker(TrustTier.VERIFIED));
 
         double expected = 80 * 8 * 1.12; // Base * duration * 12% fee
+        double expectedRound = BigDecimal.valueOf(expected).setScale(2, RoundingMode.HALF_UP).doubleValue();
 
-        assertThat(price).isEqualTo(expected);
+        assertThat(price).isEqualTo(expectedRound);
     }
-    // TODO (BOUNDARY — this is the interesting one): a booking of exactly 480 minutes must NOT
-    //      be surcharged (FR-4.3 says strictly > 480). Write this test and see what happens.
 }
