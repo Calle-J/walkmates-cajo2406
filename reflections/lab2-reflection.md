@@ -16,6 +16,11 @@ A few sentences: which tests/artifacts you produced and why those, against which
 The most interesting thing you learned or uncovered — a boundary bug, a surviving mutant, a
 covered-but-buggy path, a fallback that didn't behave, a metamorphic relation that broke.
 
+**Activity 3.3**  
+A test could "cover" the surcharge line yet miss the bug if the test does not test for a 
+booking of exactly 480 minutes. A booking that is more than 480 minutes would still meet
+the criteria of the if-statement and thus "cover" the surcharge line. 
+
 ### 3. AI use (be honest — it doesn't lower your grade)
 - What did you use AI for in this lab?
 - **What did the AI suggest vs. what you kept or changed — and why?** (the key question)
