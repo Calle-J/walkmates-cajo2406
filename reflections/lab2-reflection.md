@@ -21,6 +21,11 @@ A test could "cover" the surcharge line yet miss the bug if the test does not te
 booking of exactly 480 minutes. A booking that is more than 480 minutes would still meet
 the criteria of the if-statement and thus "cover" the surcharge line. 
 
+**Activity 4.1**  
+When we ran **``mvn clean test org.pitest:pitest-maven:mutationCoverage``**, 
+all mutants on **``PricingCalculator``** were killed. 
+
+
 ### 3. AI use (be honest — it doesn't lower your grade)
 - What did you use AI for in this lab?
 - **What did the AI suggest vs. what you kept or changed — and why?** (the key question)
