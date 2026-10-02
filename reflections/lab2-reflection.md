@@ -9,8 +9,20 @@
 ---
 
 ### 1. What we did
-A few sentences: which tests/artifacts you produced and why those, against which requirements
-(cite rule IDs, e.g. FR-1.3, FR-4.4).
+The first step was to run **``mvn clean test jacoco:report``** to generate a report of the code coverage. This 
+allowed us to record the line and branch coverage for **``PricingCalculator``**. Once the report was generated, 
+we were able to identify areas of the code that were not being tested and focus our efforts on writing tests for 
+those areas. Our focus was on ensuring that all branches were covered.
+
+The next step in the process was to optimize the tests using **Mutation testing**. We ran a pitest and
+saw that all mutants on **``PricingCalculator``** were killed, which led us to the next step of isolating
+components with mocking. Our two main targets were **``BookingService``** and **``SeekerService``**. We wrote
+three tests for **``SeekerService``** covering **success**, **failure**, and **timeout** and one test for 
+**``BookingService``** verifying the confirmation notification sent on a successful booking.
+
+The last thing we did was a **Regression selection** for the **weekend-surcharge** with a focus on identifying
+those tests that were affected by the new feature. We created the prioritization based on which tests had a
+connection to the pricing calculation and gave those tests a higher priority, and tests not connected lower priority.
 
 ### 2. What we found
 The most interesting thing you learned or uncovered — a boundary bug, a surviving mutant, a
