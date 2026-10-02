@@ -27,9 +27,6 @@ connection to the pricing calculation and gave those tests a higher priority, an
 
 ### 2. What we found
 
-The most interesting thing you learned or uncovered — a boundary bug, a surviving mutant, a
-covered-but-buggy path, a fallback that didn't behave, a metamorphic relation that broke.
-
 **Activity 3.3**  
 A test could "cover" the surcharge line yet miss the bug if it does not test for a 
 booking of exactly 480 minutes. A booking that is more than 480 minutes would still meet
@@ -38,6 +35,8 @@ the criteria of the if-statement and thus "cover" the surcharge line.
 **Activity 4.1**  
 When we ran **``mvn clean test org.pitest:pitest-maven:mutationCoverage``**, 
 we found that all mutants on **``PricingCalculator``** were killed. 
+
+Generally, we found that many mutants may survive even though coverage is high.
 
 ### 3. AI use (be honest — it doesn't lower your grade)
 
