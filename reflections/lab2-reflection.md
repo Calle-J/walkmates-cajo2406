@@ -48,6 +48,8 @@ Where did *you* have to decide something the tools/AI couldn't decide for you? (
 equivalence classes matter, whether coverage was "enough", whether a mutant was equivalent.)
 
 ### 5. What we'd test next
-If you had another hour, what's the next test or risk you'd go after?
+Future work could be to continue with mutation testing for **``BookingService``** and **``SeekerService``**. Our
+focus for this assignment was to kill all mutants on **``PricingCalculator``** which we did, but there are still
+mutants that are not killed for other services.
 
 ---
