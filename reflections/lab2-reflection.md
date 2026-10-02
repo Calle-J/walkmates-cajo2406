@@ -39,9 +39,9 @@ all mutants on **``PricingCalculator``** were killed.
 
 
 ### 3. AI use (be honest — it doesn't lower your grade)
-- What did you use AI for in this lab?
-- **What did the AI suggest vs. what you kept or changed — and why?** (the key question)
-- Anything the AI produced that you suspected was wrong or weak? How did you check?
+AI was used in this assignment to get a better understanding of what we were supposed to do and to explain
+different concepts. We were unsure how to perform the mutation testing, and AI gave us a better understanding of
+how to set up the mocks, what inject does, and what we could expect from running the tests we wrote.
 
 ### 4. Judgment
 Where did *you* have to decide something the tools/AI couldn't decide for you? (e.g. which
