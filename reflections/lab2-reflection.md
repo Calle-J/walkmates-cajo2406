@@ -31,13 +31,13 @@ The most interesting thing you learned or uncovered — a boundary bug, a surviv
 covered-but-buggy path, a fallback that didn't behave, a metamorphic relation that broke.
 
 **Activity 3.3**  
-A test could "cover" the surcharge line yet miss the bug if the test does not test for a 
+A test could "cover" the surcharge line yet miss the bug if it does not test for a 
 booking of exactly 480 minutes. A booking that is more than 480 minutes would still meet
 the criteria of the if-statement and thus "cover" the surcharge line. 
 
 **Activity 4.1**  
 When we ran **``mvn clean test org.pitest:pitest-maven:mutationCoverage``**, 
-all mutants on **``PricingCalculator``** were killed. 
+we found that all mutants on **``PricingCalculator``** were killed. 
 
 ### 3. AI use (be honest — it doesn't lower your grade)
 
