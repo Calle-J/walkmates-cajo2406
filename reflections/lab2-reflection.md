@@ -44,7 +44,7 @@ we found that all mutants on **``PricingCalculator``** were killed.
 AI was used in this assignment to get a better understanding of what we were supposed to do and to explain
 different concepts. We were unsure how to perform the mutation testing, and AI gave us a better understanding of
 how to set up the mocks, what inject does, and what we could expect from running the tests we wrote. 
-Generative AI was used also used to finalize some tests where we had already written the majority of the test.
+Generative AI was also used to finalize some tests where we had already written the majority of the test.
 
 ### 4. Judgment
 
