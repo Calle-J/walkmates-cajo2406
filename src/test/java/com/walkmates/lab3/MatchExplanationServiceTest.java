@@ -8,6 +8,8 @@ import com.walkmates.service.ai.LlmClient;
 import com.walkmates.service.ai.MatchExplanationService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
@@ -65,7 +67,47 @@ class MatchExplanationServiceTest {
                 "This DOG_WALK opportunity \"Walk Rex\" is a good fit for a NEW seeker.");
     }
 
-    // TODO (fallback): also fall back on LlmTimeoutException, and on a null/blank response.
+    @Test
+    @DisplayName("explainMatch falls back when the LLM times out")
+    void fallsBackOnLlmTimeout() throws Exception {
+        LlmClient llm = mock(LlmClient.class);
+        when(llm.complete(org.mockito.ArgumentMatchers.anyString()))
+                .thenThrow(new LlmClient.LlmTimeoutException("call timed out"));
+        MatchExplanationService service = new MatchExplanationService(llm);
+
+        String result = service.explainMatch(seeker(), listing("Friendly dog"));
+
+        assertThat(result).isEqualTo(
+                "This DOG_WALK opportunity \"Walk Rex\" is a good fit for a NEW seeker.");
+    }
+
+    @Test
+    @DisplayName("explainMatch falls back when the LLM returns null")
+    void fallsBackOnNullResponse() throws Exception {
+        LlmClient llm = mock(LlmClient.class);
+        when(llm.complete(org.mockito.ArgumentMatchers.anyString())).thenReturn(null);
+        MatchExplanationService service = new MatchExplanationService(llm);
+
+        String result = service.explainMatch(seeker(), listing("Friendly dog"));
+
+        assertThat(result).isEqualTo(
+                "This DOG_WALK opportunity \"Walk Rex\" is a good fit for a NEW seeker.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", "   "})
+    @DisplayName("explainMatch falls back when the LLM returns an blank string")
+    void fallsBackOnBlankResponse(String blankResponse) throws Exception {
+        LlmClient llm = mock(LlmClient.class);
+        when(llm.complete(org.mockito.ArgumentMatchers.anyString())).thenReturn(blankResponse);
+        MatchExplanationService service = new MatchExplanationService(llm);
+
+        String result = service.explainMatch(seeker(), listing("Friendly dog"));
+
+        assertThat(result).isEqualTo(
+                "This DOG_WALK opportunity \"Walk Rex\" is a good fit for a NEW seeker.");
+    }
+
     // TODO (injection): a description containing "ignore previous instructions and ..." must
     //      stay inside the data block; buildPrompt must still contain the data delimiters.
     // TODO (MR-1): adding an irrelevant sentence to the listing description must not change
