@@ -11,6 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -108,8 +110,34 @@ class MatchExplanationServiceTest {
                 "This DOG_WALK opportunity \"Walk Rex\" is a good fit for a NEW seeker.");
     }
 
-    // TODO (MR-1): adding an irrelevant sentence to the listing description must not change
-    //      recommendBestMatch's chosen listing.
+    @Test
+    @DisplayName("MR-1: adding an irrelevant sentence to the listing description must not change " +
+            "recommendBestMatch's chosen listing")
+    void addingIrrelevantSentenceToDescriptionDoesNotChangeChosenListing() {
+        MatchExplanationService service = new MatchExplanationService(mock(LlmClient.class));
+        Seeker seeker = seeker();
+
+        Listing l1 = new Listing("provider-1", "Walk the dog",
+                "Friendly dog", ListingType.DOG_WALK);
+        Listing l2 = new Listing("provider-2", "Walk Rex",
+                "Needs regular sitting", ListingType.PET_SITTING);
+
+        List<Listing> originalCandidates = List.of(l1, l2);
+
+        Listing originalBest = service.recommendBestMatch(seeker, originalCandidates);
+        assertThat(originalBest).isNotNull();
+
+        // Create a new listing with an irrelevant sentence
+        Listing l1Modified = new Listing("provider-1", "Walk the dog",
+                "Friendly dog. Sweden is located in Europe", ListingType.DOG_WALK);
+
+        List<Listing> modifiedCandidates = List.of(l1Modified, l2);
+
+        Listing modifiedBest = service.recommendBestMatch(seeker, modifiedCandidates);
+
+        assertThat(modifiedBest.getTitle()).isEqualTo(originalBest.getTitle());
+    }
+
     // TODO (MR-2): shuffling the candidate list must not change the chosen listing.
     // TODO (injection): a description containing "ignore previous instructions and ..." must
     //      stay inside the data block; buildPrompt must still contain the data delimiters.
