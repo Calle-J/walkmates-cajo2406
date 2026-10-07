@@ -14,8 +14,15 @@ A few sentences: which tests/artifacts you produced and why those, against which
 (cite rule IDs, e.g. FR-1.3, FR-4.4).
 
 We extended the **``promptIncludesStructuredFields()``** test in **``MatchExplanationServiceTest.java``**, 
-regarding requirement FR-5.1, by expanding the testing of the prompt structure to make sure it includes 
+regarding requirement **FR-5.1**, by expanding the testing of the prompt structure to make sure it includes 
 "Listing base rate" and data delimiters for the free-text description.  
+
+To test the **FR-5.2** requirement, we created three tests: 
+**``fallsBackOnLlmTimeout()``**, **``fallsBackOnNullResponse()``** and **``fallsBackOnBlankResponse()``**, 
+in order to test the deterministic **fallback** and so that no exceptions are leaked. 
+This was done by mocking the **``LlmClient``** to throw an ``LlmTimeoutException``, return a null/blank response,
+and throw an``LlmException`` respectively. 
+
 
 ### 2. What we found
 
