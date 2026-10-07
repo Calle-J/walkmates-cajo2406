@@ -108,9 +108,9 @@ class MatchExplanationServiceTest {
                 "This DOG_WALK opportunity \"Walk Rex\" is a good fit for a NEW seeker.");
     }
 
-    // TODO (injection): a description containing "ignore previous instructions and ..." must
-    //      stay inside the data block; buildPrompt must still contain the data delimiters.
     // TODO (MR-1): adding an irrelevant sentence to the listing description must not change
     //      recommendBestMatch's chosen listing.
     // TODO (MR-2): shuffling the candidate list must not change the chosen listing.
+    // TODO (injection): a description containing "ignore previous instructions and ..." must
+    //      stay inside the data block; buildPrompt must still contain the data delimiters.
 }
