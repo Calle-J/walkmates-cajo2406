@@ -13,6 +13,10 @@
 A few sentences: which tests/artifacts you produced and why those, against which requirements
 (cite rule IDs, e.g. FR-1.3, FR-4.4).
 
+We extended the **``promptIncludesStructuredFields()``** test in **``MatchExplanationServiceTest.java``**, 
+regarding requirement FR-5.1, by expanding the testing of the prompt structure to make sure it includes 
+"Listing base rate" and data delimiters for the free-text description.  
+
 ### 2. What we found
 
 The most interesting thing you learned or uncovered — a boundary bug, a surviving mutant, a
