@@ -11,6 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -119,7 +121,7 @@ class MatchExplanationServiceTest {
 
         Listing l1 = new Listing("provider-1", "Walk the dog",
                 "Friendly dog", ListingType.DOG_WALK);
-        Listing l2 = new Listing("provider-2", "Walk Rex",
+        Listing l2 = new Listing("provider-2", "Sitting with Rex",
                 "Needs regular sitting", ListingType.PET_SITTING);
 
         List<Listing> originalCandidates = List.of(l1, l2);
@@ -134,11 +136,38 @@ class MatchExplanationServiceTest {
         List<Listing> modifiedCandidates = List.of(l1Modified, l2);
 
         Listing modifiedBest = service.recommendBestMatch(seeker, modifiedCandidates);
+        assertThat(modifiedBest).isNotNull();
 
         assertThat(modifiedBest.getTitle()).isEqualTo(originalBest.getTitle());
     }
 
-    // TODO (MR-2): shuffling the candidate list must not change the chosen listing.
+    @Test
+    @DisplayName("MR-2: shuffling the candidate list must not change the chosen listing")
+    void shufflingCandidatesDoesNotChangeChosenListing() {
+        MatchExplanationService service = new MatchExplanationService(mock(LlmClient.class));
+        Seeker seeker = seeker();
+
+        Listing l1 = new Listing("provider-1", "Walk the dog",
+                "Friendly dog", ListingType.DOG_WALK);
+        Listing l2 = new Listing("provider-2", "Sitting with Rex",
+                "Needs regular sitting", ListingType.PET_SITTING);
+        Listing l3 = new Listing("provider-3", "House sitting with Bob",
+                "Needs regular house sitting", ListingType.HOUSE_SITTING);
+
+        List<Listing> candidates = List.of(l1, l2, l3);
+
+        Listing originalBest = service.recommendBestMatch(seeker, candidates);
+        assertThat(originalBest).isNotNull();
+
+        List<Listing> shuffledCandidates = new ArrayList<>(candidates);
+        Collections.reverse(shuffledCandidates);
+
+        Listing modifiedBest = service.recommendBestMatch(seeker, shuffledCandidates);
+        assertThat(modifiedBest).isNotNull();
+
+        assertThat(modifiedBest.getTitle()).isEqualTo(originalBest.getTitle());
+    }
+
     // TODO (injection): a description containing "ignore previous instructions and ..." must
     //      stay inside the data block; buildPrompt must still contain the data delimiters.
 }
