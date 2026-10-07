@@ -41,6 +41,9 @@ class MatchExplanationServiceTest {
 
         assertThat(prompt).contains("Seeker trust tier: " + TrustTier.NEW);
         assertThat(prompt).contains("Listing type: " + ListingType.DOG_WALK);
+        assertThat(prompt).contains("Listing base rate (SEK/hour): " + ListingType.DOG_WALK.getBaseRatePerHour());
+        assertThat(prompt).containsSubsequence("<<<LISTING_DESCRIPTION_DATA", "Friendly dog",
+                "LISTING_DESCRIPTION_DATA>>>");
     }
 
     // ---- Worked example 2: on LLM failure, fall back deterministically (FR-5.2) ----
