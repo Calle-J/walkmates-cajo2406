@@ -23,6 +23,12 @@ in order to test the deterministic **fallback** and so that no exceptions are le
 This was done by mocking the **``LlmClient``** to throw an ``LlmTimeoutException``, return a null/blank response,
 and throw an``LlmException`` respectively. 
 
+To test the **FR-5.3** requirement, we created two tests; one for each metamorphic relation. 
+The first test was created to test irrelevant details. It was done by
+creating a list with candidate-listings and run it against the **``recommendBestMatch()``** method. 
+One of the candidates were then modified to contain an irrelevant sentence in its description. 
+We then ran the **``recommendBestMatch()``** method again and compared the new result to the original one. 
+
 
 ### 2. What we found
 
