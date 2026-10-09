@@ -48,6 +48,11 @@ covered-but-buggy path, a fallback that didn't behave, a metamorphic relation th
 - **What did the AI suggest vs. what you kept or changed — and why?** (the key question)
 - Anything the AI produced that you suspected was wrong or weak? How did you check?
 
+We mainly used AI to check for errors and mistakes in the tests we wrote, and asked AI for advice.  
+We also used AI to summarize the two literatures we chose to review in part B (Research trend mini-review). 
+From the summarizations, we kept what we considered to be most relevant to what we already had done and learned 
+in part A of the lab. 
+
 ### 4. Judgment
 
 Where did *you* have to decide something the tools/AI couldn't decide for you? (e.g. which
