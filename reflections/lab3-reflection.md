@@ -23,7 +23,7 @@ and throw an``LlmException`` respectively.
 To test the **FR-5.3** requirement, we created two tests; one for each metamorphic relation. 
 The first test was created to test irrelevant details. It was done by
 creating a list with candidate-listings and run it against the **``recommendBestMatch()``** method. 
-One of the candidates were then modified to contain an irrelevant sentence in its description. 
+One of the candidates was then modified to contain an irrelevant sentence in its description. 
 We then ran the **``recommendBestMatch()``** method again and compared the new result to the original one.  
 The second test was created to test the chosen listing when the order of the list changes. 
 This was done by creating a list with candidate-listings and run it against the **``recommendBestMatch()``** method, 
@@ -44,15 +44,17 @@ ML-systems where failures often are not caused by errors in the code.
 
 ### 3. AI use (be honest — it doesn't lower your grade)
 
-We mainly used AI to check for errors and mistakes in the tests we wrote, and asked AI for advice.  
+We mainly used AI to check for errors and mistakes in the tests we wrote and asked AI for advice.  
 We also used AI to summarize the two literatures we chose to review in part B (Research trend mini-review). 
 From the summarizations, we kept what we considered to be most relevant to what we already had done and learned 
 in part A of the lab. 
 
 ### 4. Judgment
 
-Where did *you* have to decide something the tools/AI couldn't decide for you? (e.g. which
-equivalence classes matter, whether coverage was "enough", whether a mutant was equivalent.)
+We used AI to summarize the two sources we chose to review in part B. We did not read through the entire sources
+ourselves and decided to put our trust in the AI tool. This saved us a lot of time, but we can't be 100% sure
+that the summaries were completely accurate. We made this judgment based on the time we save but at the cost
+of potentially missing out on important details.
 
 ### 5. What we'd test next
 
