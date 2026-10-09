@@ -32,6 +32,11 @@ The second test was created to test the chosen listing when the order of the lis
 This was done by creating a list with candidate-listings and run it against the **``recommendBestMatch()``** method, 
 and then reversing the list and run it again, comparing the two outcomes. 
 
+To test prompt-injection robustness, we created a test that builds a prompt using 
+**``MatchExplanationService.buildPrompt()``**, with a description containing malicious instructions. 
+We then asserted that the description was contained within the data delimiters, 
+and that the prompt kept its original instructions. 
+
 ### 2. What we found
 
 The most interesting thing you learned or uncovered — a boundary bug, a surviving mutant, a
