@@ -165,7 +165,7 @@ class MatchExplanationServiceTest {
         Listing modifiedBest = service.recommendBestMatch(seeker, shuffledCandidates);
         assertThat(modifiedBest).isNotNull();
 
-        assertThat(modifiedBest.getTitle()).isEqualTo(originalBest.getTitle());
+        assertThat(modifiedBest).isSameAs(originalBest);
     }
 
     // TODO (injection): a description containing "ignore previous instructions and ..." must
