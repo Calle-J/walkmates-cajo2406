@@ -24,6 +24,25 @@ that MT reduces the oracle problem but does not fully solve it. The article also
 clears up common misunderstandings, and lists open challenges, such as how to find and choose hood MRs.
 
 
+### The ML Test Score: A Rubric for ML Production Readiness and Technical Debt Reduction (practitioner source)
+
+While traditional testing often focuses on failures within the codebase, Google shows that failures in ML-systems
+often is caused by data, infrastructure and silent failures (where the system does not crash, but gives bad answers).
+
+The authors divide testing of ML systems into four concrete areas:
+- **Features & Data**: Schema validation, data invariants, and the cost of input features.
+- **Model Development**: Testing against simple baseline models, fairness/inclusion, and model staleness.
+- **Infrastructure**: Deterministic training, fast unit tests for model specifications, integration tests,
+  and safe rollbacks/canary deploys.
+- **Monitoring**: Monitoring of training/serving skew and numerical stability in production.
+
+
+## Justification of test improvement
+
+Given that failures regarding ML-systems often is caused by data - metamorphic testing is a great tool for testing
+data invariants, such as **irrelevant details** and **order invariance** which we tested for in activity 5.3.
+
+
 ## Sources
 
 - [Metamorphic testing: A review of challenges and opportunities](https://dl.acm.org/doi/pdf/10.1145/3143561) (academic source)
