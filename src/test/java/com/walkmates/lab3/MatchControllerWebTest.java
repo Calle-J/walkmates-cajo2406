@@ -1,5 +1,8 @@
 package com.walkmates.lab3;
 
+import com.walkmates.model.Listing;
+import com.walkmates.model.ListingType;
+import com.walkmates.model.Seeker;
 import com.walkmates.repository.ListingRepository;
 import com.walkmates.repository.SeekerRepository;
 import com.walkmates.service.ai.MatchExplanationService;
@@ -15,6 +18,7 @@ import java.util.Optional;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
@@ -46,7 +50,29 @@ class MatchControllerWebTest {
                 .andExpect(status().isNotFound());
     }
 
-    // TODO: stub a seeker + listing and a canned explanation, assert 200 + JSON body.
+    @Test
+    @DisplayName("GET explain returns 200 OK and JSON object when seeker and listing exist")
+    void explainReturns200WhenSeekerAndListingExist() throws Exception {
+        String seekerId = "seeker-1";
+        String listingId = "listing-1";
+        String cannedExplanation = "This listing is great for you!";
+
+        Seeker seeker = new Seeker("carl@example.com", "Carl", "0701234567");
+        Listing listing = new Listing("provider-1", "Walk Rex",
+                "Short walk", ListingType.DOG_WALK);
+
+        when(seekers.findById(seekerId)).thenReturn(Optional.of(seeker));
+        when(listings.findById(listingId)).thenReturn(Optional.of(listing));
+        when(matchExplanation.explainMatch(seeker, listing)).thenReturn(cannedExplanation);
+
+        mvc.perform(get("/api/match/" + seekerId + "/explain")
+                        .param("listingId", listingId))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.seekerId").value(seekerId))
+                .andExpect(jsonPath("$.listingId").value(listingId))
+                .andExpect(jsonPath("$.explanation").value(cannedExplanation));
+    }
+
     // OPTIONAL EXTENSION: make the mocked service return the fallback text and assert the
     // endpoint still returns 200; also cover the listing-missing 404 path separately.
 }
