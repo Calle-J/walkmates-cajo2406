@@ -39,14 +39,10 @@ when a seeker and listing exists.
 
 ### 2. What we found
 
-The most interesting thing you learned or uncovered — a boundary bug, a surviving mutant, a
-covered-but-buggy path, a fallback that didn't behave, a metamorphic relation that broke.
+We have learnt about metamorphic testing and metamorphic relations and why they matter, especially in the context of 
+ML-systems where failures often are not caused by errors in the code. 
 
 ### 3. AI use (be honest — it doesn't lower your grade)
-
-- What did you use AI for in this lab?
-- **What did the AI suggest vs. what you kept or changed — and why?** (the key question)
-- Anything the AI produced that you suspected was wrong or weak? How did you check?
 
 We mainly used AI to check for errors and mistakes in the tests we wrote, and asked AI for advice.  
 We also used AI to summarize the two literatures we chose to review in part B (Research trend mini-review). 
@@ -60,6 +56,7 @@ equivalence classes matter, whether coverage was "enough", whether a mutant was 
 
 ### 5. What we'd test next
 
-If you had another hour, what's the next test or risk you'd go after?
+We would probably extend the metamorphic testing of the **``recommendBestMatch()``** method to make sure 
+it behaves as expected in different situations. 
 
 ---
