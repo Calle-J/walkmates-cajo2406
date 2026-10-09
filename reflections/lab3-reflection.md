@@ -57,6 +57,6 @@ equivalence classes matter, whether coverage was "enough", whether a mutant was 
 ### 5. What we'd test next
 
 We would probably extend the metamorphic testing of the **``recommendBestMatch()``** method to make sure 
-it behaves as expected in different situations. 
+it behaves as expected in a larger variety of situations. 
 
 ---
