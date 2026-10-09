@@ -53,7 +53,7 @@ in part A of the lab.
 
 We used AI to summarize the two sources we chose to review in part B. We did not read through the entire sources
 ourselves and decided to put our trust in the AI tool. This saved us a lot of time, but we can't be 100% sure
-that the summaries were completely accurate. We made this judgment based on the time we save but at the cost
+that the summaries were completely accurate. We made this judgment based on the time we saved but at the cost
 of potentially missing out on important details.
 
 ### 5. What we'd test next
