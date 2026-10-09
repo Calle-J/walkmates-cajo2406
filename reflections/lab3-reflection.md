@@ -27,8 +27,10 @@ To test the **FR-5.3** requirement, we created two tests; one for each metamorph
 The first test was created to test irrelevant details. It was done by
 creating a list with candidate-listings and run it against the **``recommendBestMatch()``** method. 
 One of the candidates were then modified to contain an irrelevant sentence in its description. 
-We then ran the **``recommendBestMatch()``** method again and compared the new result to the original one. 
-
+We then ran the **``recommendBestMatch()``** method again and compared the new result to the original one.  
+The second test was created to test the chosen listing when the order of the list changes. 
+This was done by creating a list with candidate-listings and run it against the **``recommendBestMatch()``** method, 
+and then reversing the list and run it again, comparing the two outcomes. 
 
 ### 2. What we found
 
