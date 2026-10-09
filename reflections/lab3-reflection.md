@@ -10,9 +10,6 @@
 
 ### 1. What we did
 
-A few sentences: which tests/artifacts you produced and why those, against which requirements
-(cite rule IDs, e.g. FR-1.3, FR-4.4).
-
 We extended the **``promptIncludesStructuredFields()``** test in **``MatchExplanationServiceTest.java``**, 
 regarding requirement **FR-5.1**, by expanding the testing of the prompt structure to make sure it includes 
 "Listing base rate" and data delimiters for the free-text description.  
@@ -36,6 +33,9 @@ To test prompt-injection robustness, we created a test that builds a prompt usin
 **``MatchExplanationService.buildPrompt()``**, with a description containing malicious instructions. 
 We then asserted that the description was contained within the data delimiters, 
 and that the prompt kept its original instructions. 
+
+Finally, we tested the **``GET /api/match/{seekerId}/explain``** endpoint to return a 200 status code and a JSON body. 
+
 
 ### 2. What we found
 
