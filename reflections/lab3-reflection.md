@@ -34,8 +34,8 @@ To test prompt-injection robustness, we created a test that builds a prompt usin
 We then asserted that the description was contained within the data delimiters, 
 and that the prompt kept its original instructions. 
 
-Finally, we tested the **``GET /api/match/{seekerId}/explain``** endpoint to return a 200 status code and a JSON body. 
-
+Finally, we tested the **``GET /api/match/{seekerId}/explain``** endpoint to return a 200 status code and a JSON body 
+when a seeker and listing exists. 
 
 ### 2. What we found
 
