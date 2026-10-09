@@ -27,7 +27,7 @@ clears up common misunderstandings, and lists open challenges, such as how to fi
 ### The ML Test Score: A Rubric for ML Production Readiness and Technical Debt Reduction (practitioner source)
 
 While traditional testing often focuses on failures within the codebase, Google shows that failures in ML-systems
-often is caused by data, infrastructure and silent failures (where the system does not crash, but gives bad answers).
+often are caused by data, infrastructure, and silent failures (where the system does not crash, but gives bad answers).
 
 The authors divide testing of ML systems into four concrete areas:
 - **Features & Data**: Schema validation, data invariants, and the cost of input features.
@@ -39,7 +39,7 @@ The authors divide testing of ML systems into four concrete areas:
 
 ## Justification of test improvement
 
-Given that failures regarding ML-systems often is caused by data - metamorphic testing is a great tool for testing
+Given that failures regarding ML-systems often are caused by data - metamorphic testing is a great tool for testing
 data invariants, such as **irrelevant details** and **order invariance** which we tested for in activity 5.3.
 
 
