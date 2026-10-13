@@ -33,7 +33,7 @@ AI simply simulates empathy and support, but lacks humanity in that sense.
 
 ### 4. What we'd test next
 
-For this lab, we only focused on the **Sustainability Awareness FrameWork** (SUsAF) of AI Code Assistans.
+For this lab, we only focused on the **Sustainability Awareness FrameWork** (SUsAF) of AI Code Assistance.
 Future work could include/focus on other frameworks or pieces of software to get a broader picture.
 
 ---
