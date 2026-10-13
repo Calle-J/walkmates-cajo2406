@@ -15,7 +15,7 @@ We argue that while AI can accelerate the creation of software, it also increase
 Additionally, the ease of creating software with AI may lead to a decrease in demand for human developers, 
 potentially affecting the job market.
 
-One concrete trade-off by generating code/tests with an AI code assistans tool is the creation of a shallow 
+One concrete trade-off by generating code/tests with an AI code assistance tool is the creation of a shallow 
 understanding of the underlying logic. The generated tests may not cover all edge cases or scenarios, leading to 
 potential bugs or vulnerabilities in the code, especially if the human reviewing the code doesn't have the
 knowledge to identify these issues. Taken into consideration, tests can be produced at a higher speed. However,
