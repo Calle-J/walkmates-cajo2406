@@ -9,9 +9,20 @@
 ---
 
 ### 1. Summary of SUsAF
-One-paragraph summary of our SUsAF map and the ethics trade-off you argued.
+
+Our Sustainability Awareness Framework (SUsAF) emphasizes the importance of ethical considerations in AI development. 
+We argue that while AI can accelerate the creation of software, it also increases the workload for human reviewers. 
+Additionally, the ease of creating software with AI may lead to a decrease in demand for human developers, 
+potentially affecting the job market.
+
+One concrete trade-off by generating code/tests with an AI code assistans tool is the creation of a shallow 
+understanding of the underlying logic. The generated tests may not cover all edge cases or scenarios, leading to 
+potential bugs or vulnerabilities in the code, especially if the human reviewing the code doesn't have the
+knowledge to identify these issues. Taken into consideration, tests can be produced at a higher speed. However,
+this may increase the over-reliance on AI tools.
 
 ### 2. AI use (be honest — it doesn't lower your grade)
+
 We did not use AI for this lab. 
 
 ### 3. Judgment
