@@ -12,13 +12,13 @@
 One-paragraph summary of our SUsAF map and the ethics trade-off you argued.
 
 ### 2. AI use (be honest — it doesn't lower your grade)
-- What did you use AI for in this lab?
-- **What did the AI suggest vs. what you kept or changed — and why?** (the key question)
-- Anything the AI produced that you suspected was wrong or weak? How did you check?
+We did not use AI for this lab. 
 
 ### 3. Judgment
-Where did *you* have to decide something the tools/AI couldn't decide for you? (e.g. which
-equivalence classes matter, whether coverage was "enough", whether a mutant was equivalent.)
+
+We believe that reasoning about ethics should not be handed over to AI tools. 
+A machine does not have ethics or morals. 
+AI simply simulates empathy and support, but lacks humanity in that sense. 
 
 ### 4. What we'd test next
 If you had another hour, what's the next test or risk you'd go after?
