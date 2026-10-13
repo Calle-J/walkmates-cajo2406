@@ -21,6 +21,8 @@ A machine does not have ethics or morals.
 AI simply simulates empathy and support, but lacks humanity in that sense. 
 
 ### 4. What we'd test next
-If you had another hour, what's the next test or risk you'd go after?
+
+For this lab, we only focused on the **Sustainability Awareness FrameWork** (SUsAF) of AI Code Assistans.
+Future work could include/focus on other frameworks or pieces of software to get a broader picture.
 
 ---
